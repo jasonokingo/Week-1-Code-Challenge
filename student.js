@@ -1,4 +1,4 @@
-// Creating a function to ensure the Score only allows values between 1-100
+// Create a function to ensure the Score only allows values between 1-100
 function scoreLimit(score){
     if( score >= 0 && score <=100 ) {
         return studentsScore(score);
@@ -6,7 +6,7 @@ function scoreLimit(score){
     }
 }
 
-// Creating a function that will give us the grades according to the score
+// Create a function that will give us the grades according to the score
 function studentsScore(score) {
     if(score > 79) {
         return "Grade A";
@@ -21,4 +21,4 @@ function studentsScore(score) {
 }
 
 // Input score of the student in the (score) to get grade
-console.log(scoreLimit(105));
+console.log(scoreLimit(70));
