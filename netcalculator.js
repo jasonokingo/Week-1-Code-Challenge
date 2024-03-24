@@ -1,10 +1,11 @@
-//Create a function that includes the v
+//Create a function that calculates the net salary, payee, NHIFdeductions and NSSFdeductions
 function calculateNetSalary(grossSalary) {
-    let netSalary = grossSalary - totalDeductions;
     let PAYE = payee(grossSalary);
-    let deductions = NHIFdeductions(grossSalary) + NSSFdeductions(grossSalary) + payee(grossSalary);
-        
-        function payee(grossSalary) {
+    let NHIF = NHIFdeductions(grossSalary);
+    let NSSF = NSSFdeductions(grossSalary);
+    let netSalary = grossSalary - (PAYE + NHIF + NSSF);
+//PAYE(TAX) rates
+    function payee(grossSalary) {
             if(grossSalary <= 24000) {
                 return(grossSalary * 0.1);
             } else if(grossSalary <= 32333){
@@ -16,8 +17,7 @@ function calculateNetSalary(grossSalary) {
             } else {24000 * 0.1 + 8333 * 0.25 + 467667 * 0.3 + 300000 * 0.325 + (grossSalary - 800000) * 0.35
             }
         } 
-        
-        
+//NHIF deductions rates
             function NHIFdeductions(grossSalary) {
                 if (0 >= grossSalary <= 5999) {
                     return 150;
@@ -56,7 +56,7 @@ function calculateNetSalary(grossSalary) {
                     return 1700;
                 }
             }
-
+//NSSF deductions rates
                 function NSSFdeductions(grossSalary) {
                     if(grossSalary>=7000 && grossSalary <= 36000){
                     return 420;
@@ -65,12 +65,7 @@ function calculateNetSalary(grossSalary) {
                     return 1740;
                 }
                 }
-            
-                    function totalDeductions(NSSF, NHIF, PAYE) {
-                        return (NSSF + NHIF + PAYE);
-                    }
-                    return (grossSalary - deductions);
-            
+                return { grossSalary, PAYE, NHIF, NSSF, netSalary };
 }
-
-console.log(calculateNetSalary(800000, 0));
+//Input gross salary and benefits to get the net salary
+console.log(calculateNetSalary(799000, 80000))
